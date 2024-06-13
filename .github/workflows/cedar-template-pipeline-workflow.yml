@@ -70,7 +70,7 @@ jobs:
           echo "CEDAR Template in Repo: $template_url"
           echo "CEDAR Template in CEDAR: $template_folder_url"
           echo "Documentation URL: $docs_url"
-          sed -i 's|https://docs.google.com/spreadsheets/d/[^)]+|'"$sheet_url"'|g' README.md
+          sed -i 's|https://docs.google.com/spreadsheets/d/[^/]+/edit#gid=[^)]*|'"$sheet_url"'|g' README.md
           sed -i 's|https://github.com/[^)]+/blob/[^)]+/RADxMetadataSpecification.json|'"$template_url"'|g' README.md
           sed -i 's|https://cedar.metadatacenter.org/dashboard?folderId=[^)]*|'"$template_folder_url"'|g' README.md
 

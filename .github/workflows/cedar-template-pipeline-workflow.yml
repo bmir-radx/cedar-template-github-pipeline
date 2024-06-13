@@ -116,4 +116,4 @@ jobs:
           GOOGLE_SHEET_ID: ${{ github.event.inputs.google_sheet_id }}
           NEW_SHEET_NAME: ${{ github.event.inputs.release_tag }}
         run: |
-          node copyAndProtectSheet.js
+          node utils/copyAndProtectSheet.js

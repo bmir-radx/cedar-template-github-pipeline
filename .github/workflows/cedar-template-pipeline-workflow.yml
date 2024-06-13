@@ -73,7 +73,7 @@ jobs:
           sed -i 's|https://docs.google.com/spreadsheets/d/[^)]+|'"$sheet_url"'|g' README.md
           sed -i 's|https://github.com/[^)]+/blob/[^)]+/RADxMetadataSpecification.json|'"$template_url"'|g' README.md
           sed -i 's|https://cedar.metadatacenter.org/dashboard?folderId=[^)]*|'"$template_folder_url"'|g' README.md
-#          sed -i 's|https://[^/]\+\.github\.io/[^/]\+/[^/]\+|'"$docs_url"'|g' README.md
+
           echo "Updated README.md content:"
           cat README.md
           git add README.md

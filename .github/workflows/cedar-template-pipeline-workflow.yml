@@ -38,63 +38,64 @@ jobs:
         with:
           node-version: '14'
 
-#      - name: Download Google Sheet as CSV
-#        run: |
-#          spreadsheet_id="${{ github.event.inputs.google_spreadsheet_id }}"
-#          sheet_id="${{ github.event.inputs.google_sheet_id }}"
-#          csv_url="https://docs.google.com/spreadsheets/d/${spreadsheet_id}/export?format=csv&gid=${sheet_id}"
-#          echo "Downloading CSV from: $csv_url"
-#          curl -L -o template.csv "$csv_url"
-#          echo "Downloaded CSV file content:"
-#          cat template.csv
-#
-#      - name: Commit CSV to Repository
-#        env:
-#          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-#        run: |
-#          git config --local user.email "action@github.com"
-#          git config --local user.name "GitHub Action"
-#          git add template.csv
-#          git diff --quiet && git diff --staged --quiet || git commit -m "Add updated template CSV file"
-#          git push
-#
-#      - name: Update README.md
-#        run: |
-#          sheet_url="https://docs.google.com/spreadsheets/d/${{ github.event.inputs.google_spreadsheet_id }}/edit#gid=${{ github.event.inputs.google_sheet_id }}"
-#          repo_url="https://github.com/${{ github.repository }}"
-#          template_url="${repo_url}/blob/${{ github.ref }}/RADxMetadataSpecification.json"
-#          template_folder_url="https://cedar.metadatacenter.org/dashboard?folderId=${{ github.event.inputs.template_folder_id }}"
-#          docs_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/specification.md"
-#          echo "Updating README.md with the following information:"
-#          echo "Google Sheet URL: $sheet_url"
-#          echo "CEDAR Template in Repo: $template_url"
-#          echo "CEDAR Template in CEDAR: $template_folder_url"
-#          echo "Documentation URL: $docs_url"
-#          sed -i 's|https://docs.google.com/spreadsheets/d/[^/]*/edit#gid=[^)]*|'"$sheet_url"'|g' README.md
-#          sed -i 's|https://github.com/[^)]+/blob/[^)]+/RADxMetadataSpecification.json|'"$template_url"'|g' README.md
-#          sed -i 's|https://cedar.metadatacenter.org/dashboard?folderId=[^)]*|'"$template_folder_url"'|g' README.md
-#
-#          echo "Updated README.md content:"
-#          cat README.md
-#          git add README.md
-#          git diff --quiet && git diff --staged --quiet || git commit -m "Update README.md with new template and documentation links"
-#          git push origin main
-#
-#      - name: Create GitHub Release
-#        if: ${{ github.event.inputs.release_tag}}
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.event.inputs.release_tag }}
-#          release_name: Release ${{ github.event.inputs.release_tag }} ${{ github.ref }}
-#          body: |
-#            - [Google Sheet]($sheet_url)
-#            - [CEDAR Template in Repo](RADxMetadataSpecification.json)
-#            - [CEDAR Template in CEDAR]($template_folder_url)
-#            - [Documentation](https://radx.github.io/radx-metadata-specification-docs/specification)
-#          draft: false
-#          prerelease: false
+      - name: Download Google Sheet as CSV
+        run: |
+          spreadsheet_id="${{ github.event.inputs.google_spreadsheet_id }}"
+          sheet_id="${{ github.event.inputs.google_sheet_id }}"
+          csv_url="https://docs.google.com/spreadsheets/d/${spreadsheet_id}/export?format=csv&gid=${sheet_id}"
+          echo "Downloading CSV from: $csv_url"
+          curl -L -o template.csv "$csv_url"
+          echo "Downloaded CSV file content:"
+          cat template.csv
+
+      - name: Commit CSV to Repository
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add template.csv
+          git diff --quiet && git diff --staged --quiet || git commit -m "Add updated template CSV file"
+          git push
+
+      - name: Update README.md
+        run: |
+          sheet_url="https://docs.google.com/spreadsheets/d/${{ github.event.inputs.google_spreadsheet_id }}/edit#gid=${{ github.event.inputs.google_sheet_id }}"
+          repo_url="https://github.com/${{ github.repository }}"
+          template_url="${repo_url}/blob/${{ github.ref }}/RADxMetadataSpecification.json"
+          template_folder_url="https://cedar.metadatacenter.org/dashboard?folderId=${{ github.event.inputs.template_folder_id }}"
+          docs_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/specification.md"
+          echo "Updating README.md with the following information:"
+          echo "Google Sheet URL: $sheet_url"
+          echo "CEDAR Template in Repo: $template_url"
+          echo "CEDAR Template in CEDAR: $template_folder_url"
+          echo "Documentation URL: $docs_url"
+          sed -i 's|https://docs.google.com/spreadsheets/d/[^/]*/edit#gid=[^)]*|'"$sheet_url"'|g' README.md
+          sed -i 's|https://github.com/[^)]+/blob/[^)]+/RADxMetadataSpecification.json|'"$template_url"'|g' README.md
+          sed -i 's|https://cedar.metadatacenter.org/dashboard?folderId=[^)]*|'"$template_folder_url"'|g' README.md
+          sed -i 's|https://[^/]\+\.github\.io/[^/]\+/[^/]\+|'"$docs_url"'|g' README.md
+
+          echo "Updated README.md content:"
+          cat README.md
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update README.md with new template and documentation links"
+          git push origin main
+
+      - name: Create GitHub Release
+        if: ${{ github.event.inputs.release_tag}}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.release_tag }}
+          release_name: Release ${{ github.event.inputs.release_tag }} ${{ github.ref }}
+          body: |
+            - [Google Sheet]($sheet_url)
+            - [CEDAR Template in Repo](RADxMetadataSpecification.json)
+            - [CEDAR Template in CEDAR]($template_folder_url)
+            - [Documentation](https://radx.github.io/radx-metadata-specification-docs/specification)
+          draft: false
+          prerelease: false
 
       - name: Install googleapis
         if: ${{ github.event.inputs.release_tag}}

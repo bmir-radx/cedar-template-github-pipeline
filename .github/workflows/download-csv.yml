@@ -24,9 +24,18 @@ jobs:
       - name: Download Google Sheet as CSV
         run: |
           spreadsheet_id="${{ github.event.inputs.google_spreadsheet_id }}"
-          encoded_sheet_name=$(echo "${{ github.event.inputs.google_sheet_name }}" | jq -sRr @uri) # Encode the sheet name
+          sheet_name="${{ github.event.inputs.google_sheet_name }}"
+          
+          echo "Original Sheet Name: '${sheet_name}'"
+          
+          encoded_sheet_name=$(echo "${sheet_name}" | jq -sRr @uri)
+
+          echo "Encoded Sheet Name: '${encoded_sheet_name}'"
+          
           csv_url="https://docs.google.com/spreadsheets/d/${spreadsheet_id}/gviz/tq?tqx=out:csv&sheet=${encoded_sheet_name}"
+          
           echo "Downloading CSV from: $csv_url"
           curl -o template.csv "$csv_url"
+          
           echo "Downloaded CSV file content:"
           cat template.csv

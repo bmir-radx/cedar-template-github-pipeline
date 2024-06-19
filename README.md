@@ -11,7 +11,7 @@ You can view the CEDAR Template JSON-LD file in the repository [here](https://gi
 You can access the CEDAR Template on the CEDAR website [here](https://cedar.metadatacenter.org/dashboard?folderId=https:%2F%2Frepo.metadatacenter.org%2Ffolders%2F5ac6dcb6-7a9b-4a75-a945-60ae43750953).
 
 ## Documentation
-The documentation for the CEDAR Template is available [here](https://radx.github.io/radx-metadata-specification-docs/specification)
+The documentation for the CEDAR Template is available [here](https://bmir-radx.github.io/cedar-template-github-pipeline/)
 
 ## Workflow
 

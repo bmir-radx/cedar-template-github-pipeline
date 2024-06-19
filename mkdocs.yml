@@ -1,0 +1,4 @@
+site_name: RADx Metadata Specification
+theme: readthedocs
+nav:
+  - Home: index.md

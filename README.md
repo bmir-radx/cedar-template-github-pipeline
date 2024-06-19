@@ -15,7 +15,12 @@ The documentation for the CEDAR Template is available [here](https://radx.github
 
 ## Workflow
 
-This workflow is manually triggered and performs several tasks related to the RADx Metadata Specification, including downloading the Google Sheet as a CSV, committing the CSV to the repository, updating the README.md file, creating a GitHub release, and copying and protecting the Google Sheet.
+This workflow is manually triggered and performs several tasks related to the RADx Metadata Specification, including:
+1. downloading the Google Sheet as a CSV
+2. committing the CSV to the repository
+3. updating the README.md file
+4. creating a GitHub release
+5. copying and protecting the Google Sheet.
 
 ### Triggering the Workflow
 

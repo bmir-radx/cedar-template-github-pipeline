@@ -1,5 +1,5 @@
 # cedar-template-github-pipeline
-This pipeline generates the RADx Metadata Specification from Google Sheets and documents the specifications.
+This pipeline documents resources of RADx Metdata Specifications.
 
 ## Google Sheet
 The Google Sheet for the CEDAR Template can be found [here](https://docs.google.com/spreadsheets/d/1Kwe4PFodciXo-XDX2bHN8F-CRAmopguoI9YKFX6piaQ/edit#gid=802588906).
